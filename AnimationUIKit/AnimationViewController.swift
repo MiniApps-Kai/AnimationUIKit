@@ -1,27 +1,26 @@
-//
-//  ViewController.swift
-//  AnimationUIKit
-//
-//  Created by 渡邊魁優 on 2024/06/11.
-//
-
 import UIKit
 
 class AnimationViewController: UIViewController {
     
     var delegate: AnimationViewDelegate?
+    var animationView: AnimationView {
+        view as! AnimationView
+    }
     
     public override func loadView() {
-        let view = AnimationView()
-        self.view = view
-        view.delegate = self
-        view.backgroundColor = .white
+        view = AnimationView()
+    }
+    
+    public override func viewDidLoad() {
+        super.viewDidLoad()
+        animationView.delegate = self
+        animationView.backgroundColor = .white
     }
 }
 
 extension AnimationViewController: AnimationViewDelegate {
     func didTapButton(_ view: AnimationView) {
-        view.moveRect()
+        animationView.moveRect()
     }
 }
 
